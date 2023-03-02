@@ -63,6 +63,6 @@ productManager.addProduct('Monitor', 'Monitor Dell', '1500', 'Sin imagen', 'mn23
 
 productManager.addProduct('CPU', 'CPU Dell', '5000', '10'); //producto sin todos los campos completos= 'Todos los campos deben ser completados!'
 
-productManager.getProductById(1, 1);
-productManager.getProductById(4, 1);// producto id no encontrado= 'Product Id: ... Not foud'
+productManager.getProductById(1);
+productManager.getProductById(4);// producto id no encontrado= 'Product Id: ... Not foud'
 productManager.getProducts();

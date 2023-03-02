@@ -1,11 +1,11 @@
 [
 	{
-		"title": "Monitor",
-		"description": "Monitor Dell",
-		"price": 15000,
+		"title": "CPU",
+		"description": "Dell",
+		"price": 30000,
 		"tumbnail": "Sin imagen",
-		"code": "mn234",
-		"stock": 10,
-		"id": 1
+		"code": "cp27",
+		"stock": 6,
+		"id": 2
 	}
 ]

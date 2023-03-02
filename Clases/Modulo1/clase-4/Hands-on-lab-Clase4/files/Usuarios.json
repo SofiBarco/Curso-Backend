@@ -1,0 +1,29 @@
+[
+	{
+		"nombre": "Sofia",
+		"apellido": "Barco",
+		"edad": 30,
+		"curso": "Backend"
+	},
+	{
+		"nombre": "Sofia",
+		"apellido": "Barco",
+		"edad": 30,
+		"curso": "Backend",
+		"id": null
+	},
+	{
+		"nombre": "Sofia",
+		"apellido": "Barco",
+		"edad": 30,
+		"curso": "Backend",
+		"id": 1
+	},
+	{
+		"nombre": "Sofia",
+		"apellido": "Barco",
+		"edad": 30,
+		"curso": "Backend",
+		"id": 2
+	}
+]

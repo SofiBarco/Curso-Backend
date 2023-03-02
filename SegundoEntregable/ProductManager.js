@@ -33,8 +33,7 @@ export default class ProductManager {
     getProductById = async (productId) => {
 
     if (fs.existsSync(this.path)){
-        const data = await fs.promises.readFile(this.path, 'utf-8');
-        const result = JSON.parse(data);
+        const result = await this.getProducts();
         let productFound = result.findIndex((product) => product.id === productId)
         if (productFound === -1) {
             console.log(`Product Id: ${productId} Not found`);
@@ -43,13 +42,60 @@ export default class ProductManager {
         }
     }
     }
-}
 
-const productManager = new ProductManager
+    updateProduct = async (id, title, description, price, tumbnail, code, stock) => {
+        
+            const products = await this.getProducts();
+            const productsExist = products.findIndex((product) => product.id === id);
+            if (productsExist === -1) {
+                const productElect = products.filter((product) => product.id === id);
+
+                const productChanged = {
+                    title: title ?? productElect[0].title,
+                    description: description ?? productElect[0].description,
+                    price: price ?? productElect[0].price,
+                    tumbnail: tumbnail ?? productElect[0].tumbnail,
+                    code: code ?? productElect[0].code,
+                    stock: stock ?? productElect[0].stock,
+                    id: id
+                }
+
+                products[id -1] = productChanged;
+
+                await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
+            } else {
+                return `El producto que intenta modificar, id: ${id} , no existe`;
+            }
+
+
+        }
+      
+            deleteProduct = async (productId) => {
+                    const products = await this.getProducts();
+
+                    let foundProduct = products.find((product) => product.id === productId)
+
+                    if (foundProduct) {
+                    const productDelete = products.filter((event) => event.id !== productId);
+                        await fs.promises.writeFile(this.path, JSON.stringify(productDelete, null, '\t'));
+                        return 'El producto fue eliminado';
+                    } else {
+                        return `El producto no existe`;
+                    }
+                }
+
+    }
+
+    
+
+
+/*const productManager = new ProductManager
 
 productManager.getProductById(1);
 productManager.getProductById(4);
-productManager.getProducts();
+
+
+productManager.getProducts();*/
 
 
 
