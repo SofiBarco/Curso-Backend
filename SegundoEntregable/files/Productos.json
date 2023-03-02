@@ -7,5 +7,14 @@
 		"code": "cp27",
 		"stock": 6,
 		"id": 2
+	},
+	{
+		"title": "Teclado",
+		"description": "Dell",
+		"price": 30000,
+		"tumbnail": "Sin imagen",
+		"code": "cp27",
+		"stock": 6,
+		"id": 2
 	}
 ]

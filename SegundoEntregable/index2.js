@@ -24,7 +24,7 @@ const enviar = async () => {
         stock: 6,
     }
 
-    /*let result = await manager.addProducts(producto)
+    let result = await manager.addProducts(producto)
     console.log(result);
 
     await manager.addProducts(product2)
@@ -34,11 +34,11 @@ const enviar = async () => {
     console.log(productbyId);
 
     let productbyId2 = await manager.getProductById(9);
-    console.log(productbyId2);*/
+    console.log(productbyId2);
 
 
-    //let newChange = await manager.updateProduct(2, 'Teclado');
-    //console.log(newChange);
+    let newChange = await manager.updateProduct(2, 'Teclado');
+    console.log(newChange);
 
     let productEliminado = await manager.deleteProduct(1);
     console.log(productEliminado);

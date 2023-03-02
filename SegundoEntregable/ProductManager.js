@@ -48,6 +48,9 @@ export default class ProductManager {
             const products = await this.getProducts();
             const productsExist = products.findIndex((product) => product.id === id);
             if (productsExist === -1) {
+                console.log(`El producto que intenta modificar, id: ${id} , no existe`);
+                return [];
+            } else {
                 const productElect = products.filter((product) => product.id === id);
 
                 const productChanged = {
@@ -63,9 +66,9 @@ export default class ProductManager {
                 products[id -1] = productChanged;
 
                 await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
-            } else {
-                return `El producto que intenta modificar, id: ${id} , no existe`;
-            }
+            } 
+                
+        
 
 
         }
