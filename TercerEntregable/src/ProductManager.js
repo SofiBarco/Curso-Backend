@@ -47,6 +47,7 @@ export default class ProductManager {
             console.log(`Product Id: ${productId} Not found`);
     } else{
             console.log(productFound);
+            return productFound;
         
     }
     }}
