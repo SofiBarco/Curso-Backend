@@ -36,11 +36,11 @@ router.post("/", async (req, res) => {
 
 router.post("/:cid/product/:pid", async (req, res) => {
     try {
-        const cartId=req.params.cid
-        const productId=req.params.pid
-        const quantity=req.body
-        let valorCarrito=Object.values(quantity);
-        let cantidad=valorCarrito[0]
+        const cartId = req.params.cid
+        const productId = req.params.pid
+        const quantity = req.body
+        const valorCarrito = Object.values(quantity);
+        const cantidad = valorCarrito[0]
         console.log(cantidad)
       
         let cart= await cmanager.addProductCart(cartId,productId,cantidad);
