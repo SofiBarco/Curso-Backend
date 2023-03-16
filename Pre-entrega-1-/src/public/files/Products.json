@@ -1,0 +1,78 @@
+[
+	{
+		"id": 1,
+		"code": "Ma1",
+		"title": "Máscaras",
+		"category": "Mascaras",
+		"description": "Son máscaras q le aportan a la piel lo que necesita para estar humectada y fresca. Se retiran luego de dejar actuar 10 minutos con un algodón húmedo",
+		"price": 500,
+		"tumbnail": "Sin imagen",
+		"stock": 15
+	},
+	{
+		"id": 2,
+		"code": "Se1",
+		"title": {
+			"price": 5000
+		},
+		"category": "Serums",
+		"description": "Serum, ideales para quitar manchas que dejó el verano y cerrar poros",
+		"price": 1600,
+		"tumbnail": "Sin imagen",
+		"stock": 10
+	},
+	{
+		"id": 3,
+		"code": {
+			"title": "Jabon"
+		},
+		"title": {
+			"price": 5000
+		},
+		"category": "Vitaminas",
+		"description": "Fortalece tu sistema inmune",
+		"price": 1000,
+		"tumbnail": "Sin imagen",
+		"stock": 30
+	},
+	{
+		"id": 4,
+		"code": "Bc1",
+		"title": " Bb Cream",
+		"category": "Cremas_y_Geles",
+		"description": "Crema anti age, protección y color. Todo en una!",
+		"price": 2800,
+		"tumbnail": "Sin imagen",
+		"stock": 20
+	},
+	{
+		"id": 5,
+		"code": "Gs1",
+		"title": " Gel de Seda",
+		"category": "Cremas_y_Geles",
+		"description": "Gel de seda con un tacto increíble con los beneficios del dermotensiv que es un activo contra toda la contracción que produce las arrugas. Efecto botóx.",
+		"price": 1200,
+		"tumbnail": "Sin imagen",
+		"stock": 10
+	},
+	{
+		"id": 6,
+		"code": "Gd1",
+		"title": " Gel Despigmentante",
+		"category": "Cremas_y_Geles",
+		"description": "Para todo tipo de pieles, secas, mixtas, normales y grasas con pigmentaciones por: Embarazo, anticonceptivos y radiaciones solares excesivas.",
+		"price": 1800,
+		"tumbnail": "Sin imagen",
+		"stock": 10
+	},
+	{
+		"id": 7,
+		"code": "Gd7",
+		"title": " Gel ",
+		"category": "Cremas_y_Geles",
+		"description": "Para todo tipo de pieles, secas, mixtas, normales y grasas con pigmentaciones por: Embarazo, anticonceptivos y radiaciones solares excesivas.",
+		"price": 2000,
+		"tumbnail": "Sin imagen",
+		"stock": 10
+	}
+]
