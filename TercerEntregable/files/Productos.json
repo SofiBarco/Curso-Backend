@@ -2,55 +2,61 @@
     {
         "id": 1,
         "code" : "Ma1",
-        "img": "Sin imagen",
         "nombre": "Máscaras",
+        "category" : "Mascaras",
         "description": "Son máscaras q le aportan a la piel lo que necesita para estar humectada y fresca. Se retiran luego de dejar actuar 10 minutos con un algodón húmedo",
         "precio": 500,
-       "stock" : 15
+       "stock" : 15,
+       "img": "Sin imagen"
     },
     {
         "id": 2,
         "code" : "Se1",
-        "img": "Sin imagen",
         "nombre": " Sérum",
+        "category" : "Serums",
         "description": "Serum, ideales para quitar manchas que dejó el verano y cerrar poros",
         "precio": 1600,
-        "stock" : 10
+        "stock" : 10,
+        "img": "Sin imagen"
     },
     {
         "id": 3,
         "code" : "Vi1",
-        "img": "Sin imagen",
+        "category" : "Vitaminas",
         "nombre": " Vitamina C",
         "description": "Fortalece tu sistema inmune",
         "precio": 1000,
-        "stock" : 30
+        "stock" : 30,
+        "img": "Sin imagen"
     },
     {
         "id": 4,
         "code" : "Bc1",
-        "img": "Sin imagen",
+        "category" : "Cremas_y_Geles",
         "nombre": " Bb Cream",
         "description": "Crema anti age, protección y color. Todo en una!",
         "precio": 2800,
-        "stock" : 20
+        "stock" : 20,
+        "img": "Sin imagen"
     },
     {
         "id": 5,
         "code" : "Gs1",
-        "img": "Sin imagen",
+        "category" : "Cremas_y_Geles",
         "nombre": " Gel de Seda",
         "description": "Gel de seda con un tacto increíble con los beneficios del dermotensiv que es un activo contra toda la contracción que produce las arrugas. Efecto botóx.",
         "precio": 1200,
-        "stock" : 10
+        "stock" : 10,
+        "img": "Sin imagen"
     },
     {
         "id": 6,
-        "code" : "Gd1",
-        "img": "Sin imagen",
+        "code" : "Gd1", 
+        "category" : "Cremas_y_Geles",       
         "nombre": " Gel Despigmentante",
         "description": "Para todo tipo de pieles, secas, mixtas, normales y grasas con pigmentaciones por: Embarazo, anticonceptivos y radiaciones solares excesivas.",
         "precio": 1800,
-        "stock" : 10
+        "stock" : 10,
+        "img": "Sin imagen"
     }
 ]

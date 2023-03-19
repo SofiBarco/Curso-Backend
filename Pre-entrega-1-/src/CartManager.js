@@ -64,7 +64,106 @@ export default class CartManager {
         await fs.promises.writeFile(this.path, JSON.stringify(carts, null, '\t'));
         return cart;
     };
-    addProductCart = async (cartId, productId, quantity) => {
+
+    /*addProductCart = async (cartId, products, quantity) => {
+        const cart = await this.getCartById(cartId);
+        if (!cart) {
+          return `Carrito no encontrado`;
+        }         
+        for (let i = 0; i < products.length; i++) {
+          const product = productId[i];
+          const productId = product.id;
+          
+                    
+          const existingProduct = cart.products.find((prod) => prod.id === productId);
+          if (existingProduct) {
+            existingProduct.quantity += quantity;
+          } else {
+            const foundProduct = await productmanager.getProductById(productId);
+            if (!foundProduct) {
+              return `Producto no encontrado`;
+            }
+            cart.products.push({
+              id: productId,
+              quantity: quantity,
+            });
+          }
+        }
+        
+        await cart.save();
+        return cart;
+      };*/
+
+
+      addProductCart = async (cartId, productId, quantity) => {
+                            
+              const carts = await this.getCart();
+              const cartIndex = carts.findIndex((cart) => cart.id === cartId);
+              const cart = await this.getCartById(cartId);
+              const product = await productmanager.getProductById(productId);
+
+              if (!product || !cart) {
+                throw new Error('El carrito/producto no existen');
+                
+              }
+              if (cartIndex >= 0) {
+                // el carrito ya existe
+                const existingProduct = cart.products.find(p => p.id === productId);
+                if (ExistingProduct) {
+                  // el producto ya existe en el carrito
+                  existingProduct.quantity += quantity;
+                } else {
+                  // el producto no existe en el carrito
+                  cart.products.push({
+                    id: productId,
+                    quantity: quantity
+                  });
+                }
+              } else {
+                // el carrito no existe
+                const newCart = {
+                  id: cartId,
+                  products: [{
+                    id: productId,
+                    quantity: quantity
+                  }]
+                };
+                carts.push(newCart);
+              }
+              
+              await this.saveCarts(carts);
+              return carts[cartIndex];
+            } 
+
+    /*addProductCart = async (cartId, productId, quantity) => {
+
+        /*const cartIndex = carts.findIndex((cart) => cart.id === cartId);
+        const cart = await this.getCartById(cartId);
+        const products = await productmanager.getProductById(productId);
+        const productIindex = products.findIndex((product) => product.productId === productId);
+    
+        if (productIindex >= 0) {
+          const products = cart.products.find((product) => product.id === productId)
+            if(products) {
+                products.quantity += quantity;  
+            } else {
+          
+          cart.products.push(
+            {
+            id: productId,
+            quantity: quantity
+          });
+        }
+    } else {
+        return `Producto no encontrado`
+    }
+      };*/
+
+
+    
+
+
+    /*addProductCart = async (cartId, productId, quantity) => {
                             
               const carts = await this.getCart();
         
@@ -105,7 +204,7 @@ export default class CartManager {
               }}
            
             
-    }
+    }*/
 
     getCartById = async (cartId) => {
 
@@ -113,7 +212,7 @@ export default class CartManager {
             const result = await this.getCart();
             let cartFound = result.find((cart) => cart.id === cartId)
             if (!cartFound) {
-                console.log(`Product Id: ${cartId} Not found`);
+                console.log(`Cart Id: ${cartId} Not found`);
             } else {
                 console.log(cartFound);
                 return cartFound;
