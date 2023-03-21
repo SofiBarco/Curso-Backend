@@ -1,0 +1,14 @@
+<div id="app">
+    <h1> LISTA DE PRODUCTOS </h1>
+    {{#each products}}
+<div style="color: #000099; font-weight:bold">
+
+<br>
+
+<p>{{this.title}} </p>
+<p>{{this.price}} </p>
+<p>{{this.stock}} </p>
+
+</div>
+    {{/each}}
+</div>

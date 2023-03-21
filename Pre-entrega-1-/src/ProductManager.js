@@ -1,5 +1,6 @@
 import fs from 'fs';
 import express from 'express';
+import socket from "./socket.js";
 
 export default class ProductManager {
 
@@ -35,7 +36,9 @@ export default class ProductManager {
         }
         products.push(product);
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'));
-        return product;
+        
+        socket.io.emit("products", products);
+        return products;
     };
 
     getProductById = async (productId) => {
@@ -94,6 +97,7 @@ export default class ProductManager {
         if (foundProduct) {
             const productDelete = products.filter((event) => event.id !== productId);
             await fs.promises.writeFile(this.path, JSON.stringify(productDelete, null, '\t'));
+            socket.io.emit("products", productDelete);
             return 'El producto fue eliminado';
         } else {
             return `El producto no existe`;

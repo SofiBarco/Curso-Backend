@@ -12,9 +12,7 @@
 	{
 		"id": 2,
 		"code": "Se1",
-		"title": {
-			"price": 5000
-		},
+		"title": "Sérum",
 		"category": "Serums",
 		"description": "Serum, ideales para quitar manchas que dejó el verano y cerrar poros",
 		"price": 1600,
@@ -23,12 +21,8 @@
 	},
 	{
 		"id": 3,
-		"code": {
-			"title": "Jabon"
-		},
-		"title": {
-			"price": 5000
-		},
+		"code": "ViC1",
+		"title": "Vitamina C",
 		"category": "Vitaminas",
 		"description": "Fortalece tu sistema inmune",
 		"price": 1000,
@@ -74,5 +68,15 @@
 		"price": 2000,
 		"tumbnail": "Sin imagen",
 		"stock": 10
+	},
+	{
+		"id": 8,
+		"code": "Se8",
+		"title": " Serum ",
+		"category": "Cremas_y_Geles",
+		"description": "Para todo tipo de pieles, secas, mixtas, normales y grasas con pigmentaciones por: Embarazo, anticonceptivos y radiaciones solares excesivas.",
+		"price": 1500,
+		"tumbnail": "Sin imagen",
+		"stock": 20
 	}
 ]
