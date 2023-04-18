@@ -1,5 +1,6 @@
 import { Router } from "express";
-import ProductManager from "../ProductManager.js";
+import ProductManager from "../dao/dbManagers/db.products.js";
+
 
 const router = Router();
 const productManager = new ProductManager();
@@ -7,13 +8,40 @@ const productManager = new ProductManager();
 
 
 router.get("/", async (req, res) => {
-    const products = await productManager.getProducts();
-    res.render("home", {products});
+      const { limit = 3, page = 1, category, status, sort } = req.query;
+    const {
+        docs: products,
+        hasPrevPage,
+        hasNextPage,
+        nextPage,
+        prevPage,
+    } = await productManager.getProducts(page, limit, category, status, sort);
+
+    res.render("products", {
+        products,
+        page,
+        hasPrevPage,
+        hasNextPage,
+        prevPage,
+        nextPage,
+    });
 });
 
-router.get("/realtimeproducts", async (req, res) => {
-    const product = await productManager.getProducts();
-    res.render("realTimeProducts", {});
-})
+router.get("/product/:pid", async (req, res) => {
+    const { pid } = req.params;
+    const product = await productmanager.getProductsbyId(pid);
+    res.render("product", {
+      product,
+    });
+  });
+
+/*router.get("/realtimeproducts", async (req, res) => {
+    const products = await productManager.getProducts();
+    res.render("realTimeProducts", {
+        products,
+    });
+});*/
+
+
 
 export default router;

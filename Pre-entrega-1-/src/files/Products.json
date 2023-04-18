@@ -1,0 +1,102 @@
+[
+	{
+		"title": "Máscaras",
+		"description": "Son máscaras q le aportan a la piel lo que necesita para estar humectada y fresca. Se retiran luego de dejar actuar 10 minutos con un algodón húmedo",
+		"code": "Ma1",
+		"price": 500,
+		"status": "true",
+		"stock": "15",
+		"category": "Mascaras",
+		"tumbnail": [],
+		"id": 1		
+	},
+	{
+		"title": "Sérum",
+		"description": "Serum, ideales para quitar manchas que dejó el verano y cerrar poros",
+		"code": "Se1",
+		"price": 1600,
+		"status": "true",
+		"stock": "10",
+		"category": "Serums",
+		"tumbnail": [],
+		"id": 2		
+	},
+	{
+		"title": "Vitamina C",
+		"description": "Fortalece tu sistema inmune",
+		"code": "ViC1",
+		"price": 1000,
+		"status": "true",
+		"stock": "30",
+		"category": "Vitaminas",
+		"tumbnail": [],
+		"id": 3		
+	},
+	{
+		"title": " Bb Cream",
+		"description": "Crema anti age, protección y color. Todo en una!",
+		"code": "Bc1",
+		"price": 2800,
+		"status": "true",
+		"stock": "20",
+		"category": "Cremas_y_Geles",
+		"tumbnail": [],
+		"id": 4			
+	},
+	{
+		"title": " Gel de Seda",
+		"description": "Gel de seda con un tacto increíble con los beneficios del dermotensiv que es un activo contra toda la contracción que produce las arrugas. Efecto botóx.",
+        "code": "Gs1",
+		"price": 1200,
+		"status": "true",
+		"stock": "10",
+		"category": "Cremas_y_Geles",
+		"tumbnail": [],
+		"id": 5	
+	},
+	{
+		"title": " Gel Despigmentante",
+		"description": "Para todo tipo de pieles, secas, mixtas, normales y grasas con pigmentaciones por: Embarazo, anticonceptivos y radiaciones solares excesivas.",
+        "code": "Gd1",
+		"price": 1800,
+		"status": "true",
+		"stock": "10",
+		"category": "Cremas_y_Geles",
+		"tumbnail": [],
+		"id": 6		
+	},
+	{
+		"title": "Serum Antioxidante",
+		"description": "Serum con Vitamina C y ácido hialurónico",
+        "code": "Sa1",
+		"price": 2000,
+		"status": "true",
+		"stock": "15",
+		"category": "Serums",
+		"tumbnail": [],
+		"id": 7		
+	},
+	{
+		"title": "Crema Antiarrugas",
+		"description": "Crema con aceite de jojoba y argelina, previene las arrugas",
+        "code": "Ca1",
+		"price": 3200,
+		"status": "true",
+		"stock": "10",
+		"category": "Cremas_y_Geles",
+		"tumbnail": [],
+		"id": 8		
+	},
+	{
+		"title": " Espuma Bronceadora",
+		"description": "Espuma que te broncea. La aplicas y en horas tomas un color bronz hermoso! No mancha la ropa !",
+        "code": "Eb1",
+		"price": 3000,
+		"status": "true",
+		"stock": "20",
+		"category": "Cremas_y_Geles",
+		"tumbnail": [],
+		"id": 9	
+	}
+	
+]

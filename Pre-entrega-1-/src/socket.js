@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import ProductManager from "./ProductManager.js";
+import ProductManager from "./dao/dbManagers/db.products.js";
 
 const socket ={};
 socket.connect = (server) => {

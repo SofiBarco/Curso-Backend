@@ -1,11 +1,11 @@
 import fs from 'fs';
 import express from 'express';
-import socket from "./socket.js";
+
 
 export default class ProductManager {
 
     constructor() {
-        this.path = './src/public/files/Products.json';
+        this.path = './src/files/Products.json';
         this.products = [];
     }
 
@@ -56,38 +56,32 @@ export default class ProductManager {
         }
     }
 
-    updateProduct = async (id, code, title, category, description, price, tumbnail, stock) => {
-
-        const products = await this.getProducts();
-        const productsExist = products.findIndex((product) => product.id === id);
-        if (productsExist === -1) {
-            console.log(`El producto que intenta modificar, id: ${id} , no existe`);
-            return [];
-        } else {
-            const productElect = products.filter((product) => product.id === id);
-
-            const productChanged = {
-                id: id,
-                code: code ?? productElect[0].code,
-                title: title ?? productElect[0].title,
-                category: category ?? productElect[0].category,                
-                description: description ?? productElect[0].description,
-                price: price ?? productElect[0].price,
-                tumbnail: tumbnail ?? productElect[0].tumbnail,                
-                stock: stock ?? productElect[0].stock,
-                
-            }
-
-            products[id - 1] = productChanged;
-
-            await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
-            return `Product updated`;
+    updateProduct = async (id, changes) => {
+        try {
+          const products = await this.getProducts();
+          const product = await this.getProductById(id);
+          const productIndex = products.findIndex((product) => product.id === id);
+    
+          if (changes.id) {
+            throw new Error("Cannot modify id property");
+          }
+    
+          const updatedProduct = {
+            ...product,
+            ...changes,
+          };
+    
+          products.splice(productIndex, 1, updatedProduct);
+    
+          await fs.promises.writeFile(
+            this.path,
+            JSON.stringify(products, null, "\t")
+          );
+          return updatedProduct;
+        } catch (error) {
+          console.log(error);
         }
-
-
-
-
-    }
+      };
 
     deleteProduct = async (productId) => {
         const products = await this.getProducts();

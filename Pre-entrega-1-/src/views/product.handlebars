@@ -1,0 +1,34 @@
+<div id="app">
+        <div id="productDetail" >
+        <div id="product-{{product._id}}">
+            <div>
+                {{#each product.thumbnails}}
+                <img src="http://localhost:8080/{{this}}" alt="imagen producto" />
+                {{/each}}
+            </div>
+            <div>
+                <h5 id="title">{{product.title}}</h5>
+                <p>Descripcion:
+                    {{product.description}}</p>
+                <p>Categoria:
+                    {{product.category}}</p>
+                <p>Stock:
+                    {{product.stock}}</p>
+                <p>Codigo:
+                    {{product.code}}</p>
+
+                    <div>
+                        <p>${{product.price}}</p>
+                        <button id="botonForm">Agregar al carrito</button>
+                    </div>
+                    <div>
+                        <input placeholder=" " type="text" name="cid" id="cid" required />
+                        <label for="cid">Id de carrito</label>
+                    </div>
+           
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/product.js"></script>
