@@ -29,18 +29,18 @@ router.get("/", async (req, res) => {
 
 router.get("/product/:pid", async (req, res) => {
     const { pid } = req.params;
-    const product = await productmanager.getProductsbyId(pid);
+    const product = await productmanager.getProductbyId(pid);
     res.render("product", {
       product,
     });
   });
 
-/*router.get("/realtimeproducts", async (req, res) => {
+router.get("/realtimeproducts", async (req, res) => {
     const products = await productManager.getProducts();
     res.render("realTimeProducts", {
         products,
     });
-});*/
+});
 
 
 

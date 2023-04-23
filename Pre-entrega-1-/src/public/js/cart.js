@@ -5,7 +5,7 @@ removeProductForms.forEach((form) => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const productId = form.getAttribute("id").split("-")[1];
-    const productName = form.closest(".max-w-4xl").querySelector("h5").textContent;
+    const productName = form.querySelector("h5").textContent;
 
     fetch(`/api/carts/${cartId}/product/${productId}`, {
       method: "DELETE",
@@ -18,9 +18,6 @@ removeProductForms.forEach((form) => {
           position: "top-right",
           icon: "success",
          });
-        setTimeout(() => {
-          location.reload();
-        }, 4000);
       })
       .catch((error) => console.log(error));
   });

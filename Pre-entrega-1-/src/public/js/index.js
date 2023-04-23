@@ -1,6 +1,6 @@
 const socket = io();
 
-const listProd = document.getElementById('productslist');
+const listProd = document.getElementById('productlist');
 const imageList = document.getElementById("imageproducts");
 
     socket.on("products", (products) => {
@@ -8,7 +8,7 @@ const imageList = document.getElementById("imageproducts");
             return `<br>- El producto ${prod.title} con el codigo: ${prod.code}, descripcion: ${prod.description} y precio: ${prod.price}`;
         }).join('');
     
-        productList.innerHTML = productHTML;
+        productlist.innerHTML = productHTML;
     
         products.thumbnails.forEach((image) => {
             const imageElem = document.createElement("img");

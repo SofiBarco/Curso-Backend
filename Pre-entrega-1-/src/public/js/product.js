@@ -1,3 +1,5 @@
+const socket = io();
+
 const formButton = document.getElementById('botonForm');
 
 formButton.addEventListener("click", (e) => {

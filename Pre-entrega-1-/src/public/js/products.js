@@ -1,4 +1,5 @@
-const cartForms = document.querySelectorAll('.add-to-cart-form');
+
+const cartForms = document.querySelectorAll('addToCartForm');
 import Swal from 'sweetalert2';
 
 cartForms.forEach((form) => {
