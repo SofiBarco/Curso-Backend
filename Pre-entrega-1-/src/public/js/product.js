@@ -1,5 +1,6 @@
 const socket = io();
 
+const home = document.getElementById("home");
 const formButton = document.getElementById('botonForm');
 
 formButton.addEventListener("click", (e) => {
@@ -15,8 +16,8 @@ formButton.addEventListener("click", (e) => {
   })
   .then(() => {
     Swal.fire({
-      title: "Product added to cart!!!",
-      text: `You added  ${productTitle}`,
+      title: "Producto agregado con exito!",
+      text: `Has agregado:  ${productTitle}`,
       toast: true,
       position: "top-right",
       icon: "success",
@@ -24,3 +25,8 @@ formButton.addEventListener("click", (e) => {
   })
   .catch((error) => console.log(error));
 });
+
+home.addEventListener("click", (e) =>{
+  e.preventDefault();
+  window.location.href = "/products";
+})

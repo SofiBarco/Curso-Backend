@@ -4,6 +4,7 @@ const listProd = document.getElementById('productlist');
 const imageList = document.getElementById("imageproducts");
 
     socket.on("products", (products) => {
+        
         const productHTML = products.map((prod) => {
             return `<br>- El producto ${prod.title} con el codigo: ${prod.code}, descripcion: ${prod.description} y precio: ${prod.price}`;
         }).join('');
