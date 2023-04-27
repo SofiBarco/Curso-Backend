@@ -1,4 +1,4 @@
-const socket = io();
+/*const socket = io();
 
 const home = document.getElementById("home");
 const formButton = document.getElementById('botonForm');
@@ -29,4 +29,4 @@ formButton.addEventListener("click", (e) => {
 home.addEventListener("click", (e) =>{
   e.preventDefault();
   window.location.href = "/products";
-})
+})*/

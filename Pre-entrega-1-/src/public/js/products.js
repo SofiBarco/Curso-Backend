@@ -1,5 +1,5 @@
 
-const cartForms = document.querySelectorAll('addToCartForm');
+/*const cartForms = document.querySelectorAll('addToCartForm');
 import Swal from 'sweetalert2';
 
 cartForms.forEach((form) => {
@@ -24,4 +24,4 @@ cartForms.forEach((form) => {
         console.log(error);
       });
   });
-});
+});*/

@@ -1,12 +1,16 @@
 import express from 'express';
 import handlebars from "express-handlebars";
 import morgan from 'morgan';
+import session from "express-session";
+import MongoStore from "connect-mongo";
 import database from './db.js';
 import socket  from './socket.js';
 import productsRouter from "./routes/products.router.js";
 import cartRouter from "./routes/cart.router.js";
+import sessionsRouter from "./routes/sessions.router.js";
 import viewsRouter from "./routes/views.router.js";
 import __dirname from './utils.js';
+import config from './config.js';
 
 
 
@@ -20,16 +24,27 @@ serverProduct.set("view engine", "handlebars");
 
 
 serverProduct.use(express.json());
-serverProduct.use(express.urlencoded({ extended: false }));  
+serverProduct.use(express.urlencoded({ extended: true }));  
 serverProduct.use(express.static(`${__dirname}/public`));
 serverProduct.use(morgan('dev'));
+serverProduct.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl: config.dbUrl,
+      ttl: 20,
+    }),
+  resave: true,
+  saveUninitialized: false,
+  secret: "cualquiercosa",
+})
+);
 
 database.connect();
 
 serverProduct.use("/api/products", productsRouter);
 serverProduct.use("/api/carts",cartRouter);
 serverProduct.use("/", viewsRouter);
-
+serverProduct.use("/api/sessions", sessionsRouter);
 
 const httpServer = serverProduct.listen(8080, (req, res) => {
     console.log("Listening on port 8080");

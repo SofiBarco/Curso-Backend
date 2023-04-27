@@ -6,6 +6,13 @@ const router = Router();
 const productManager = new ProductManager();
 
 
+router.get("/register", (req, res) => {
+  res.render("register");
+});
+
+router.get("/login", (req, res) => {
+  res.render("login");
+})
 
 router.get("/", async (req, res) => {
       const { limit = 3, page = 1, category, status, sort } = req.query;

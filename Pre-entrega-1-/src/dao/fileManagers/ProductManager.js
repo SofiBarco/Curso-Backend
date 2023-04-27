@@ -18,10 +18,22 @@ export default class ProductManager {
 
     getProducts = async () => {
         if (fs.existsSync(this.path)) {
-            const data = await fs.promises.readFile(this.path, 'utf-8');
-            const result = JSON.parse(data);
-            console.log(result);
-            return result;
+            //const data = await fs.promises.readFile(this.path, 'utf-8');
+            //const result = JSON.parse(data);
+           // console.log(result);
+            //return result;
+            const products = await productModel.paginate(
+                {
+                    ...(category && { category }),
+                    ...(status && { status }),
+                },
+                {
+                    page: parseInt(page),
+                    limit: parseInt(limit),
+                    sort: sort,
+                }
+            );
+            return products;
         } else {
             return [];
         }
