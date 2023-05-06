@@ -1,13 +1,11 @@
-<div id="listProd">
-    <p id="productslist"></p>
-    <h1>Products list to modified</h1>
-
-    <form action="">
-        <label>Productos</label>
-    </form>
-    <div id="productslist">
-    </div>
-
+<div id="products">
+  {{#each products}}
+  <div class="gallery">
+    <h3>{{this.title}}</h3>
+    <p>{{this.description}}</p>
+    <p>${{this.price}}</p>
+  </div>
+{{/each}}
 
 </div>
 <script src="/socket.io/socket.io.js"></script>

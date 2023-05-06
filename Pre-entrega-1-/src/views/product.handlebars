@@ -1,40 +1,10 @@
-{{!--<nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" id="home">Home</a>
-  </div>
-</nav>
-<div id="app">
-    <h1 id="productId">Detalles del producto</h1>
-        <div id="productDetail" >
-        <div id="product-{{product._id}}">
-            <div>
-                {{#each product.thumbnails}}
-                <img src="{{this}}" alt="imagen producto" />
-                {{/each}}
-            </div>
-            <div>
-                <h5 id="title">{{product.title}}</h5>
-                <p>Descripcion:
-                    {{product.description}}</p>
-                <p>Categoria:
-                    {{product.category}}</p>
-                <p>Stock:
-                    {{product.stock}}</p>
-                <p>Codigo:
-                    {{product.code}}</p>
-
-                    <div>
-                        <p>${{product.price}}</p>
-                        <button id="botonForm">Agregar al carrito</button>
-                    </div>
-                    <div>
-                        <input placeholder=" " type="text" name="cid" id="cid" required />
-                        <label for="cid">Id de carrito</label>
-                    </div>
-           
-            </div>
-        </div>
-    </div>
+<div id="productDetail">
+    <h1>Detalle Producto</h1>
+    <h5>{{product.title}}</h5>
+    <p>{{product.description}}</p>
+    <p>{{product.categoy}}</p>
+    <p>${{product.price}}</p>
+    <a id="{{product.id}}" onclick="addToCart(this.id)"><button class="btn btn-light">Agregar al Carrito</button></a>
 </div>
 
-<script src="/js/product.js"></script>
+<script src="/js/products.js"></script>

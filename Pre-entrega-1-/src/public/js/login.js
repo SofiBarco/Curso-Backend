@@ -17,5 +17,12 @@ form.addEventListener("submit", async (e) => {
   });
 
   let result = await response.json();
+  result.status === "Success"
+  ? (window.location.href = "/")
+  : Swal.fire({
+    icon: "error",
+    title: "Error",
+    text: result.error,
+  });
   console.log(result);
 });

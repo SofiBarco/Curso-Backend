@@ -25,17 +25,17 @@ serverProduct.set("view engine", "handlebars");
 
 serverProduct.use(express.json());
 serverProduct.use(express.urlencoded({ extended: true }));  
-serverProduct.use(express.static(`${__dirname}/public`));
+serverProduct.use("/", express.static(`${__dirname}/public`));
 serverProduct.use(morgan('dev'));
 serverProduct.use(
   session({
     store: MongoStore.create({
       mongoUrl: config.dbUrl,
-      ttl: 20,
+      ttl: 30,
     }),
   resave: true,
   saveUninitialized: false,
-  secret: "cualquiercosa",
+  secret: config.sessionSecret,
 })
 );
 

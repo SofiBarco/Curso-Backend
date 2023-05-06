@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;">
+ <h1 class="card-title">Carrito</h1>
+ {{#each products}}
+  <div class="card-body">
+    
+    <p class="card-text">{{this.product.title}}: {{this.quantity}}</p>
+   
+  </div>
+  {{/each}}
+</div>

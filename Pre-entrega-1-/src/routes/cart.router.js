@@ -61,6 +61,54 @@ router.post("/:cid/product/:pid", async (req, res) => {
     payload: newProduct,
   });
 });
+
+router.delete("/:cid", async (req, res) => {
+  const cartId = rew.params.cid;
+  const cartUpd = await cmanager.deleteCart(cartId);
+
+  if (!cartUpd)
+
+  return res.status(404).send({status: "error", error:"Carrito no encontrado"});
+
+  return res.send({
+    status: "Success",
+    message: "Todos los productos fueron eliminados del carrito",
+  });
+});
+
+router.delete("/:cid/product/:pid", async (req, res) => {
+  const cartId = req.params.cid;
+  const productId = req.params.pid;
+
+  const cartUpd = await cmanager.deleteProductCart(cartId, productId);
+
+  if(!cartUpd)
+  return res.status(404).send({status: "error", error:"producto no encontrado"});
+  return res.send({
+    status: "Success",
+    message: "El producto fue eliminado con exito",
+  });
+  });
+
+  router.put("/:cid/product/:pid", async (req, res) => {
+    const cartId = req.params.cid;
+    const productId = req.params.pid;
+    const { quantity } = req.body;
+
+    const cartUpd = await cmanager.updateProductCart(
+      cartId,
+      productId,
+      quantity
+    );
+
+    if(!cartUpd)
+    return res.status(404).send({status: 'error', error: "error"});
+
+    return res.send({
+      status: "Success",
+      message:'Carrito actualizado',
+});
+  });
   
   
   export default router;

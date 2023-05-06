@@ -1,4 +1,73 @@
-<div id="app">
+<div>
+   <h1>Bienvenido {{user.name}}</h1>
+<div class="row">
+  <button class="btn btn-primary" onclick="logout()">Logout</button>
+ <br>
+  {{#each products}}
+  <div class="card" style="width: 18rem;">
+    <img src="{{this.thumbnails.[0]}}" class="card-img-top" alt="...">
+   <div class="card-body">
+    <a href="/product/{{this._id}}"> 
+    <h5 class="card-title">{{this.title}}</h5>
+    </a>
+     <p class="card-text">$ {{this.price}}</p>
+     <a id="{{this.id}}" name="addProdBtn" onclick="addToCart(this.id)" class="btn btn-primary">
+      Agregar al Carrito
+     </a>
+   </div> 
+   {{/each}}
+  </div>
+</div>
+</div>
+{{#if hasPrevPage}}
+        <a href="{{prevLink}}"><button type="button" class="btn btn-primary"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Anterior</button></a>
+    {{/if}}
+
+    <p>{{page}} de {{totalPages}}</p> 
+
+        {{#if hasNextPage}}
+        <a href="{{nextLink}}"><button type="button" class="btn btn-primary"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Siguiente</button></a>
+    {{/if}}
+    </div>
+
+    <script src="/js/products.js"></script>
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!--<div id="app">
     <h1> LISTA DE PRODUCTOS </h1>
     {{#each products}}
 <div style="color: #000099; font-weight:bold">

@@ -1,20 +1,16 @@
 const socket = io();
 
-const listProd = document.getElementById('productlist');
-const imageList = document.getElementById("imageproducts");
+let listProd = document.getElementById('products');
 
-    socket.on("products", (products) => {
+
+    socket.on("productAdd", (product) => {
         
-        const productHTML = products.map((prod) => {
-            return `<br>- El producto ${prod.title} con el codigo: ${prod.code}, descripcion: ${prod.description} y precio: ${prod.price}`;
-        }).join('');
+        const productHTML = document.createElement("div");
+        productHTML.classList.add("gallery");
+        productHTML.innerHTML = `<h2>${product.title}</h2> <p>${product.description}</p> <p>$${product.price}</p>`;
+        listProd.appendChild(productHTML);
+    });
     
-        productlist.innerHTML = productHTML;
-    
-        products.thumbnails.forEach((image) => {
-            const imageElem = document.createElement("img");
-            imageElem.src = image;
-            imageElem.alt = products.title;
-            imageList.appendChild(imageElem);
-        });
+    socket.on("productDelete", (productIndex) =>{
+        listProd.removeChild(listProd.children[productIndex]);
     });

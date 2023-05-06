@@ -37,10 +37,7 @@ const productSchema = mongoose.Schema({
 		type: Array,
 		default: [],
 	  },
-	  id: {
-		type: Number,
-		required: true,
-	  },
+	  
 });
 
 productSchema.plugin(mongoosePaginate);

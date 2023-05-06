@@ -7,10 +7,21 @@ export default class ProductManager {
         try {
             const products = await productModel.find().lean();
             return products;
+
         } catch (error) {
             console.log(error);            
         }
     };
+
+    getPaginationProd = async (options) => {
+        try {
+            const {query, pagination} = options;
+            const pagProducts = await productModel.paginate(query, pagination);
+            return pagProducts;
+        } catch (error) {
+         console.log(error);   
+        }
+    }
 
     addProducts = async (product) => {
         try {
@@ -23,7 +34,7 @@ export default class ProductManager {
 
     getProductById = async (id) => {
         try {
-            const product = await productModel.findOne({ _id: id});
+            const product = await productModel.findOne({ _id: id}).lean();
             return product;
         } catch (error) {
             console.log(error);
