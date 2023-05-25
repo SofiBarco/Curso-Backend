@@ -2,9 +2,12 @@ import express from 'express';
 import handlebars from "express-handlebars";
 import morgan from 'morgan';
 import session from "express-session";
+import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
 import database from './db.js';
 import socket  from './socket.js';
+import passport from "passport";
+import initializePassport from "./auth/passport.js";
 import productsRouter from "./routes/products.router.js";
 import cartRouter from "./routes/cart.router.js";
 import sessionsRouter from "./routes/sessions.router.js";
@@ -27,17 +30,10 @@ serverProduct.use(express.json());
 serverProduct.use(express.urlencoded({ extended: true }));  
 serverProduct.use("/", express.static(`${__dirname}/public`));
 serverProduct.use(morgan('dev'));
-serverProduct.use(
-  session({
-    store: MongoStore.create({
-      mongoUrl: config.dbUrl,
-      ttl: 30,
-    }),
-  resave: true,
-  saveUninitialized: false,
-  secret: config.sessionSecret,
-})
-);
+serverProduct.use(cookieParser());
+initializePassport();
+serverProduct.use(passport.initialize());
+  
 
 database.connect();
 

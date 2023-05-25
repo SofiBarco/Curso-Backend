@@ -1,31 +1,37 @@
 import { Router } from "express";
+import passport from "passport";
 import ProductManager from "../dao/dbManagers/db.products.js";
 import CartManager from "../dao/dbManagers/db.carts.js";
-import { isProtected, checkLogged, checkSession } from "../middlewares/autorizacion.js";
+/*import { isProtected, checkLogged, checkSession } from "../middlewares/autorizacion.js";*/
 
 
 const router = Router();
 const productManager = new ProductManager();
 const cartManager = new CartManager();
 
-router.get("/register", checkLogged, (req, res) => {
+router.get("/register", (req, res) => {
   res.render("register", {title : "Register"});
 });
 
-router.get("/login",checkSession, (req, res) => {
+router.get("/login", (req, res) => {
   res.render("login", {title : "Login"});
-})
+});
 
-router.get("/", isProtected, async (req, res) => {
-     const options = {
-      query: {},
-      pagination: {
-        limit: req.query.limit ?? 3,
-        page: req.query.page ?? 1,
-        lean: true,
-        sort: {},
-      },
-     };
+router.get("/current", passport.authenticate("jwt", { session: false}), (req, res )=> {
+  res.render("profile", { user: req.user});
+});
+
+router.get("/", passport.authenticate("jwt", { session: false}), 
+async (req, res) => {
+  const options = {
+    query: {},
+    pagination: {
+      limit: req.query.limit ?? 3,
+      page: req.query.page ?? 1,
+      lean: true,
+      sort: {},
+    },
+   };
      if (req.query.category) {
       options.query.category = req.query.category;
     }
@@ -62,7 +68,7 @@ router.get("/", isProtected, async (req, res) => {
       prevLink,
       nextLink,
       title: "Products",
-      user: req.session.user,
+      user: req.user,
     });
 });
 
