@@ -1,6 +1,6 @@
-const cartId = "643b00bbcad7f717963e84f6";
+//const cartId = "643b00bbcad7f717963e84f6";
 
-async function addToCart (productId) {
+async function addToCart (cartId, productId) {
   let response = await fetch(`/api/carts/${cartId}/product/${productId}`,{
     method: 'POST',
     body: JSON.stringify({quantity:1}),
@@ -14,7 +14,7 @@ async function addToCart (productId) {
 }
 
 async function logout() {
-  let response = await fetch("/api/sessions/logout", {
+  let response = await fetch("/api/users/logout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -5,7 +5,7 @@ import GitHubStrategy from "passport-github2";
 import userModel from "../dao/models/user.model.js";
 import cartModel from "../dao/models/cart.model.js";
 import config from "../config.js";
-import { createHash, isValidPasword } from "../utils.js";
+import { createHash } from "../utils.js";
 
 const { clientID, clientSecret, callbackUrl, jwtSecret } = config;
 
@@ -23,7 +23,7 @@ const cookieExt = (req) => {
 
 const jwtOptions = {
     secretOrKey : jwtSecret,
-    jwtFromReq: ExtractJwt.fromExtractors([cookieExt]),
+    jwtFromRequest : ExtractJwt.fromExtractors([cookieExt]),
 };
 
 const initializePassport = () =>  {

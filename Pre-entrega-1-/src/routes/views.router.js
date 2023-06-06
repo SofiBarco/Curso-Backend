@@ -1,13 +1,13 @@
 import { Router } from "express";
 import passport from "passport";
-import ProductManager from "../dao/dbManagers/db.products.js";
-import CartManager from "../dao/dbManagers/db.carts.js";
+import { productsService, cartsService } from "../services/index.js";
+//import ProductManager from "../dao/dbManagers/db.products.js";
+//import CartManager from "../dao/dbManagers/db.carts.js";
 /*import { isProtected, checkLogged, checkSession } from "../middlewares/autorizacion.js";*/
 
 
 const router = Router();
-const productManager = new ProductManager();
-const cartManager = new CartManager();
+
 
 router.get("/register", (req, res) => {
   res.render("register", {title : "Register"});
@@ -52,7 +52,7 @@ async (req, res) => {
       page,
       hasPrevPage,
       hasNextPage,
-    } = await productManager.getPaginationProd(options);
+    } = await productsService.getProducts(options);
   
     const link = "/?page=";
   
@@ -74,20 +74,21 @@ async (req, res) => {
 
 router.get("/product/:pid", async (req, res) => {
     const productId = req.params.pid;
-    const product = await productManager.getProductById(productId);
+    const product = await productsService.getProductById(productId);
     res.render("product", {
       title: "Detalle Producto",
       product
     });
   });
 
-router.get("/carts", async (req, res) => {
-  const cart = await cartManager.getCartById("643b00bbcad7f717963e84f6");
-  res.render("cart", {products: cart.products, title: "Carrito"});
+router.get("/carts", passport.authenticate("jwt", { session: false }),
+async (req, res) => {
+  const cart = await cartsService.getCartById(req.user.cart);
+  res.render("cart", { products: cart.products, title: "Cart Items" });
 });
 
 router.get("/realtimeproducts", async (req, res) => {
-    const products = await productManager.getProducts();
+    const products = await productsService.getProducts();
     res.render("realTimeProducts", {
         products,
         title: "Real Time Products",

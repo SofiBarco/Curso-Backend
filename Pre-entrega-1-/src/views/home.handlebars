@@ -5,13 +5,13 @@
  <br>
   {{#each products}}
   <div class="card" style="width: 18rem;">
-    <img src="{{this.thumbnails.[0]}}" class="card-img-top" alt="...">
+    <img src="{{thumbnails.[0]}}" class="card-img-top" alt="...">
    <div class="card-body">
-    <a href="/product/{{this._id}}"> 
-    <h5 class="card-title">{{this.title}}</h5>
+    <a href="/product/{{_id}}"> 
+    <h5 class="card-title">{{title}}</h5>
     </a>
-     <p class="card-text">$ {{this.price}}</p>
-     <a id="{{this.id}}" name="addProdBtn" onclick="addToCart(this.id)" class="btn btn-primary">
+     <p class="card-text">$ {{price}}</p>
+     <a name="addProdBtn" onclick="addToCart('{{../user.cart}}', '{{_id}}')" class="btn btn-primary">
       Agregar al Carrito
      </a>
    </div> 

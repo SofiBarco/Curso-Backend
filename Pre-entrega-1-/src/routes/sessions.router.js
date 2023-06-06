@@ -1,77 +1,72 @@
 import { Router } from "express";
 import SessionManager from "../dao/dbManagers/db.sessions.js";
-import CartManager from "../dao/dbManagers/db.carts.js"
+import config from "../config.js";
+import passport from "passport";
+import jwt from "jsonwebtoken";
+import { isValidPassword } from "../utils.js";
 
 const router = Router();
 const sessionManager = new SessionManager()
-const cmanager = new CartManager();
 
 
-router.post("/register", async (req, res) => {
-    try {
-        const { first_name, last_name, email, age, password, role } = req.body;
-        
-       const userExists = await sessionManager.getUser({email});
-       if(userExists) {
-        return  res
-        .status (400)
-        .send({ status: "error", error: "user exists"});
-       }
-        
-       const cart = await cmanager.addCart({});
+router.post("/register", passport.authenticate("register", { session: false, failureRedirect: "/api/sessions/failRegister",}), async (req, res) => {
+    return res.send ({ status : "success", message: "usuario registrado"});
+});
 
-       const user = {
-        first_name, 
-        last_name, 
-        email, 
-        age, 
-        password,
-        role: role ?? "user",
-        cart: cart._id, 
-       };
-
-       await sessionManager.register(user);
-       return res.send({ status:"Success", message: "user registered ok"});
-    } catch (error) {
-        console.log(error);
-    }
+router.get("/failRegister", (req, res) => {
+  console.log("Failed Register");
+  return res.send({ status: "error", message: "auth error"});
 });
 
 router.post("/login", async (req, res) => {
-    try {
+   
       const { email, password }  = req.body;
-      const user = await sessionManager.getUser({ email, password });
+      const user = await sessionManager.getUser({ email });
 
-      if(!user) {
+      if(!user) 
         return res
         .status(400)
         .send({ status: "error", error: "Incorrect Credentials"});
-      }
 
-      req.session.user = {
+      if(!isValidPassword(user, password))
+        return res.status(401).send({ stautus: "error", error: "Incorrect Credentials"});
+        
+      const jwtUser = {
         name: `${user.first_name} ${user.last_name}`,
         email: user.email,
-        age: user.age, 
-        role: user.role,
         cart: user.cart,
       };
 
-        res.send({
-        status: "Success",
-        message: "Logged In",
-        payload: req.session.user,
-         });
-    } catch (error) {
-        console.log(error);
-    }
+      const token = jwt.sign(jwtUser, config.jwtSecret, {expiresIn: "24h"});
+
+      return res.cookie("jwtCookie", token, {httpOnly: true}).send({
+        status: "success",
+        message: "login sucessful",
+      });
+      
 });
 
+router.get("/github", passport.authenticate("github", {scope: ["user:email"]}), 
+async (req, res) => {
+});
+
+router.get("/githubcallback", passport.authenticate("github", {
+  session: false, failureRedirect: "/login",}), async (req, res) => {
+    const jwtUser= {
+      name: req.user.first_name,
+      email: req.user.email,
+      cart: req.user.cart,
+    };
+
+    const token = jwt.sign(jwtUser, config.jwtSecret, { expiresIn: "24h"});
+    res.cookie("jwtCookie", token, { httpOnly: true}).redirect("/");
+  }
+  );
+
 router.post("/logout", (req, res) => {
-  req.session.destroy((error) => {
-    if (!error)
-    return res.send({ status: "Success", message: "Logout Successful"});
-    return res.send({ status: "error", message: "error"});
-  });
+ return res
+ .clearCookie("jwtCookie")
+ .send({ status: "success", message: "log out sucessful"});
 });
 
 export default router;
